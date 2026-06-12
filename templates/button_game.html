@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Button Game - RPi Management Center</title>
+        <link rel="stylesheet" href="../static/style.css">
+        <link rel="icon" type="image/x-icon" href="../static/assets/favicon.png">
+    </head>
+
+    <body>
+        <h1>Button Game</h1>
+
+        <main class="form-2">
+            <div class="video-feed">
+                <h2>Live Video Feed</h2>
+                <div class="flexbox">
+                    <img class="video-stream" src="{{ url_for('video_feed') }}" alt="Video Stream" height="480px">
+                </div>
+            </div>
+            <div class="controls">
+                <h2>Controls</h2>
+                <form class="flexbox">
+                    <button name="start" type="submit">Start</button>
+                    <button name="pause" type="submit">Pause</button>
+                    <button name="reset" type="submit">Reset</button>
+                </form>
+            </div>
+            <div class="options">
+                <h2>Options</h2>
+                <div class="flexbox">
+                    
+                </div>
+            </div>
+            <div class="led">
+                <h2>LED Display</h2>
+                <div class="flexbox">
+
+                </div>
+            </div>
+            <div class="other">
+                <h2>More Options</h2>
+                <div class="flebox">
+                    <a href="{{ url_for('home') }}"><button>Home</button></a>
+
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
