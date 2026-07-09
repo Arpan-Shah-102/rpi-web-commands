@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RPi Management Center</title>
+        <link rel="stylesheet" href="../static/style.css">
+        <link rel="icon" type="image/x-icon" href="../static/assets/favicon.png">
+    </head>
+
+    <body>
+        <h1>RPi Management Center</h1>
+
+        <main>
+            <div class="video-feed">
+                <h2>Live Video Feed</h2>
+                <div class="flexbox">
+                    <img class="video-stream" src="{{ url_for('video_feed') }}" alt="Video Stream" height="480px">
+                </div>
+            </div>
+            <div class="communication">
+                <h2>Communication</h2>
+                <form action="/" method="post" class="flexbox">
+                    <input name="speakerSpeak" placeholder="Speaker" type="text"> <br>
+                    <div class="lcd">
+                        <input class="lcd-1" maxlength="16" name="lcdLine1" placeholder="{{ data.lcd_text[0].replace(chr(0), ' ').replace(chr(1), '>') if data.lcd_text[0] else 'LCD Line 1' }}" type="text"> <br>
+                        <input class="lcd-2" maxlength="16" name="lcdLine2" placeholder="{{ data.lcd_text[1].replace(chr(0), ' ').replace(chr(1), '>') if data.lcd_text[1] else 'LCD Line 2' }}" type="text"> <br>
+                    </div>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+            <div class="commands">
+                <h2>Commands</h2>
+                <form action="/" method="post" class="flexbox">
+                    <div class="flexbox">
+                        <button class="led yellow {{ 'on' if data.ledY else '' }}" name="ledY" type="submit"><div class="leg-1 leg"></div><div class="leg-2 leg"></div></button>
+                        <button class="led red {{ 'on' if data.ledR else '' }}" name="ledR" type="submit"><div class="leg-1 leg"></div><div class="leg-2 leg"></div></button>
+                        <button class="led green {{ 'on' if data.ledG else '' }}" name="ledG" type="submit"><div class="leg-1 leg"></div><div class="leg-2 leg"></div></button>
+                        <button class="led blue {{ 'on' if data.ledB else '' }}" name="ledB" type="submit"><div class="leg-1 leg"></div><div class="leg-2 leg"></div></button>
+                    </div>
+                    <br> <button class="buzzer" name="buzzer" type="submit">Toggle Buzzer</button>
+                </form>
+            </div>
+            <div class="rgbled">
+                <h2>RGB LED</h2>
+                <form action="/" method="post" class="flexbox">
+                    <label class="color-label">Color: <div class="color-example"></div></label>
+                    <label class="rgb-label" for="rgbRed"><span class="r">{{ data.rgbLedR }}</span><input class="rgb-slider r" name="rgbLedR" type="range" min="0" max="255" value="{{ data.rgbLedR }}"></label>
+                    <label class="rgb-label" for="rgbGreen"><span class="g">{{ data.rgbLedG }}</span><input class="rgb-slider g" name="rgbLedG" type="range" min="0" max="255" value="{{ data.rgbLedG }}"></label>
+                    <label class="rgb-label" for="rgbBlue"><span class="b">{{ data.rgbLedB }}</span><input class="rgb-slider b" name="rgbLedB" type="range" min="0" max="255" value="{{ data.rgbLedB }}"></label>
+                    <button class="randomize" name="randomize" type="submit">Randomize</button>
+                    <button name="update" type="submit">Update RGB LED</button>
+                </form>
+            </div>
+            <div class="games">
+                <h2>Games</h2>
+                <div class="flexbox">
+                    <a href="{{ url_for('button_game') }}"><button>Play Button Game</button></a>
+                </div>
+            </div>
+
+            <script src="../static/script.js"></script>
+        </main>
+    </body>
+</html>
